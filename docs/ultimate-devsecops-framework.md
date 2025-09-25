@@ -277,3 +277,68 @@ Goal: Continuously monitor and protect running workloads.
   - Inconsistent environments across clouds; drift between policy and runtime.
   - Alert fatigue without ownership, triage workflows, and auto-remediation.
   - Using legacy/unsupported services (e.g., avoid new deployments on GCP Deployment Manager; prefer Terraform/KRM).
+## Visual Workflows (Mermaid Diagrams)
+
+### Phase 1: Plan & Design – Threat Modeling & Policy as Code
+```mermaid
+flowchart TD
+  A[Business Objectives] --> B[Threat Modeling \n STRIDE/LINDDUN]
+  B --> C[Security Requirements \n User Stories/Acceptance Criteria]
+  C --> D[Policy as Code \n Azure Policy / AWS SCP+Config / GCP Org Policy]
+  D --> E[IaC Baselines \n Terraform/Bicep/CDK/KRM]
+  E --> F[Pre-commit & CI IaC Scanning \n Checkov/Terrascan/OPA]
+  F --> G[Design Review Gate]
+```
+
+### Phase 2: Develop – SAST, SCA, Secrets & Hooks
+```mermaid
+flowchart TD
+  A[Developer IDE] --> B[Pre-commit Hooks \n lint/tests/secret-scan]
+  B --> C[Branch Push / PR]
+  C --> D[SAST (CodeQL/SonarQube)]
+  C --> E[SCA & SBOM (Snyk/Mend/Syft)]
+  C --> F[Secrets Scan (Gitleaks/TruffleHog)]
+  D & E & F --> G[PR Checks & Severity Gates]
+  G -->|Pass| H[Approve & Merge]
+  G -->|Fail| I[Fix Findings]
+```
+
+### Phase 3: Build & Test – CI/CD Security, DAST, Container Scanning
+```mermaid
+flowchart TD
+  A[Source Merge] --> B[Build Container/Artifact]
+  B --> C[SBOM Generate (Syft/CycloneDX)]
+  B --> D[Image Scan (Trivy/Registry Scan)]
+  B --> E[Sign & Attest (cosign/SLSA)]
+  D --> F{Vuln Policy}
+  F -->|Pass| G[Ephemeral Env Deploy]
+  F -->|Fail| H[Block & Create Issue]
+  G --> I[DAST (ZAP)]
+  I --> J{Risk Budget Gate}
+  J -->|Pass| K[Promote to Deploy Stage]
+  J -->|Fail| H
+```
+
+### Phase 4: Deploy – Infra Security & Secrets Management
+```mermaid
+flowchart TD
+  A[Release Approval] --> B[IaC Apply \n Terraform/Bicep/CDK/KRM]
+  B --> C[Guardrails \n Azure Policy / OPA / BinAuthz]
+  C --> D[Runtime Identities \n Managed Identity / IRSA / Workload Identity]
+  D --> E[Secrets via Vaults \n Key Vault / Secrets Manager / Secret Manager]
+  E --> F[Network Controls \n WAF, Private Links, Firewall, VPC SC]
+  F --> G[Deploy to Target Env]
+```
+
+### Phase 5: Operate & Monitor – CSPM, CWPP, SIEM, IR
+```mermaid
+flowchart TD
+  A[Workloads Running] --> B[CSPM Posture \n Defender for Cloud / Sec Hub / SCC]
+  A --> C[CWPP Runtime \n Defender / Inspector / CTD]
+  A --> D[Telemetry \n Monitor/CloudWatch/Cloud Logging]
+  D --> E[SIEM \n Sentinel / Security Lake / Chronicle]
+  E --> F[Detections-as-Code + SOAR]
+  F --> G[Containment & Eradication]
+  G --> H[Lessons Learned & Policy Update]
+  H --> B
+```
