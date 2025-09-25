@@ -1,0 +1,7 @@
+flowchart TD
+  A[Business Objectives] --> B[Threat Modeling \n STRIDE LINDDUN]
+  B --> C[Security Requirements \n User Stories Acceptance Criteria]
+  C --> D[Policy as Code \n Azure Policy   AWS SCP+Config   GCP Org Policy]
+  D --> E[IaC Baselines \n Terraform Bicep CDK KRM]
+  E --> F[Pre-commit & CI IaC Scanning \n Checkov Terrascan OPA]
+  F --> G[Design Review Gate]

@@ -1,0 +1,9 @@
+flowchart TD
+  A[Workloads Running] --> B[CSPM Posture \n Defender for Cloud   Sec Hub   SCC]
+  A --> C[CWPP Runtime \n Defender   Inspector   CTD]
+  A --> D[Telemetry \n Monitor CloudWatch Cloud Logging]
+  D --> E[SIEM \n Sentinel   Security Lake   Chronicle]
+  E --> F[Detections-as-Code + SOAR]
+  F --> G[Containment & Eradication]
+  G --> H[Lessons Learned & Policy Update]
+  H --> B

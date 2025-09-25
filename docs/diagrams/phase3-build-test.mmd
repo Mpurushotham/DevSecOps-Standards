@@ -1,0 +1,6 @@
+flowchart TD
+  A[Source Merge] --> B[Build Container Artifact]
+  B --> C[SBOM Generate  ]
+  I --> J{Risk Budget Gate}
+  J -->|Pass| K[Promote to Deploy Stage]
+  J -->|Fail| H

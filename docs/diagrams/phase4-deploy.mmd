@@ -1,0 +1,7 @@
+flowchart TD
+  A[Release Approval] --> B[IaC Apply \n Terraform Bicep CDK KRM]
+  B --> C[Guardrails \n Azure Policy   OPA   BinAuthz]
+  C --> D[Runtime Identities \n Managed Identity   IRSA   Workload Identity]
+  D --> E[Secrets via Vaults \n Key Vault   Secrets Manager   Secret Manager]
+  E --> F[Network Controls \n WAF, Private Links, Firewall, VPC SC]
+  F --> G[Deploy to Target Env]

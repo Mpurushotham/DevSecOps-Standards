@@ -1,0 +1,7 @@
+flowchart TD
+  A[Developer IDE] --> B[Pre-commit Hooks \n lint tests secret-scan]
+  B --> C[Branch Push   PR]
+  C --> D[SAST  ]
+  D & E & F --> G[PR Checks & Severity Gates]
+  G -->|Pass| H[Approve & Merge]
+  G -->|Fail| I[Fix Findings]
