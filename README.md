@@ -1,4 +1,7 @@
 # DevSecOps Standards
+[![Generate DevSecOps Artifacts](https://github.com/Mpurushotham/DevSecOps-Standards/actions/workflows/generate-artifacts.yml/badge.svg)](https://github.com/Mpurushotham/DevSecOps-Standards/actions/workflows/generate-artifacts.yml)
+
+
 
 # ADO-test-scripts-example
 
@@ -72,4 +75,3 @@ This repository contains a comprehensive, cross-cloud DevSecOps framework for Az
 
 ## License
 TBD
-
