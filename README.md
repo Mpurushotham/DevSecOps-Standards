@@ -1,3 +1,5 @@
+# DevSecOps Standards
+
 # ADO-test-scripts-example
 
 **ACT AS:** You are a Senior Cloud Security Architect and DevOps Evangelist with 15+ years of experience across Azure, AWS, and GCP. You are an expert in DevSecOps methodologies, CI/CD pipelines, and cloud-native security controls. Your task is to create a definitive guide for implementing DevSecOps.
@@ -51,4 +53,23 @@ Please structure the output as a formal technical document with the following se
 **TONE & FORMAT:**
 *   **Tone:** Professional, authoritative, clear, and instructional. Avoid excessive marketing jargon.
 *   **Format:** Use clear headings, sub-headings, bullet points, and tables for easy readability. Assume the content will be exported to a PDF or Markdown file.
+
+
+## Documentation
+- Guide (Markdown): docs/ultimate-devsecops-framework.md
+- Visual diagrams (PNG): docs/diagrams/
+- Printable PDF: docs/ultimate-devsecops-framework.pdf
+
+## Overview
+This repository contains a comprehensive, cross-cloud DevSecOps framework for Azure, AWS, and GCP, including phase-by-phase guidance, tooling, and visual workflows.
+
+## Quick Links
+- Phase 1: Plan & Design diagram: docs/diagrams/phase1-plan.png
+- Phase 2: Develop diagram: docs/diagrams/phase2-develop.png
+- Phase 3: Build & Test diagram: docs/diagrams/phase3-build-test.png
+- Phase 4: Deploy diagram: docs/diagrams/phase4-deploy.png
+- Phase 5: Operate & Monitor diagram: docs/diagrams/phase5-operate.png
+
+## License
+TBD
 
