@@ -1,0 +1,61 @@
+name: Generate DevSecOps Artifacts
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'docs/**.md'
+      - 'docs/diagrams/*.mmd'
+      - '.github/workflows/generate-artifacts.yml'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'docs/**.md'
+      - 'docs/diagrams/*.mmd'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Generate Mermaid PNGs
+        run: |
+          set -euo pipefail
+          if compgen -G "docs/diagrams/*.mmd" > /dev/null; then
+            for f in docs/diagrams/*.mmd; do
+              out="${f%.mmd}.png"
+              npx --yes @mermaid-js/mermaid-cli -i "$f" -o "$out"
+            done
+          else
+            echo "No .mmd files found under docs/diagrams; skipping PNG generation."
+          fi
+
+      - name: Generate PDF from Markdown
+        run: |
+          set -euo pipefail
+          npx --yes md-to-pdf docs/ultimate-devsecops-framework.md || true
+          # Fallback to pandoc if md-to-pdf fails
+          if [ ! -f docs/ultimate-devsecops-framework.pdf ]; then
+            sudo apt-get update && sudo apt-get install -y pandoc wkhtmltopdf || true
+            pandoc docs/ultimate-devsecops-framework.md -o docs/ultimate-devsecops-framework.pdf || true
+          fi
+
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "ci: regenerate diagrams and PDF"
+          file_pattern: |
+            docs/diagrams/*.png
+            docs/ultimate-devsecops-framework.pdf
