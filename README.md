@@ -19,6 +19,15 @@ A practical, cross-cloud DevSecOps framework for Azure, AWS, and GCP. Includes l
 - Phase 4: Deploy: docs/diagrams/phase4-deploy.png
 - Phase 5: Operate & Monitor: docs/diagrams/phase5-operate.png
 
+   reference links(!https://github.com/Mpurushotham/DevSecOps-Standards/blob/main/docs/index.md)
+  
+
+
+
+
+
+
+
 ## Contributing
 See CONTRIBUTING.md. Use Conventional Commits. Update diagrams/PDF when docs change.
 
