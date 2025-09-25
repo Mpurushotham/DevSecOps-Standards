@@ -342,3 +342,15 @@ flowchart TD
   G --> H[Lessons Learned & Policy Update]
   H --> B
 ```
+
+#### Inline PNGs
+
+![Phase 1: Plan & Design](diagrams/phase1-plan.png)
+
+![Phase 2: Develop](diagrams/phase2-develop.png)
+
+![Phase 3: Build & Test](diagrams/phase3-build-test.png)
+
+![Phase 4: Deploy](diagrams/phase4-deploy.png)
+
+![Phase 5: Operate & Monitor](diagrams/phase5-operate.png)
