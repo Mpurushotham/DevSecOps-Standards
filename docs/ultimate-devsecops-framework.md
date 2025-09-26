@@ -280,6 +280,9 @@ Goal: Continuously monitor and protect running workloads.
 ## Visual Workflows (Mermaid Diagrams)
 
 ### Phase 1: Plan & Design – Threat Modeling & Policy as Code
+
+![Phase 1: Plan & Design](diagrams/phase1-plan.png)
+
 ```mermaid
 flowchart TD
   A[Business Objectives] --> B[Threat Modeling \n STRIDE/LINDDUN]
@@ -291,33 +294,11 @@ flowchart TD
 ```
 
 ### Phase 2: Develop – SAST, SCA, Secrets & Hooks
-```mermaid
-flowchart TD
-  A[Developer IDE] --> B[Pre-commit Hooks \n lint/tests/secret-scan]
-  B --> C[Branch Push / PR]
-  C --> D[SAST (CodeQL/SonarQube)]
-  C --> E[SCA & SBOM (Snyk/Mend/Syft)]
-  C --> F[Secrets Scan (Gitleaks/TruffleHog)]
-  D & E & F --> G[PR Checks & Severity Gates]
-  G -->|Pass| H[Approve & Merge]
-  G -->|Fail| I[Fix Findings]
-```
+![Phase 2: Develop](diagrams/phase2-develop.png)
 
 ### Phase 3: Build & Test – CI/CD Security, DAST, Container Scanning
-```mermaid
-flowchart TD
-  A[Source Merge] --> B[Build Container/Artifact]
-  B --> C[SBOM Generate (Syft/CycloneDX)]
-  B --> D[Image Scan (Trivy/Registry Scan)]
-  B --> E[Sign & Attest (cosign/SLSA)]
-  D --> F{Vuln Policy}
-  F -->|Pass| G[Ephemeral Env Deploy]
-  F -->|Fail| H[Block & Create Issue]
-  G --> I[DAST (ZAP)]
-  I --> J{Risk Budget Gate}
-  J -->|Pass| K[Promote to Deploy Stage]
-  J -->|Fail| H
-```
+
+![Phase 3: Build & Test](diagrams/phase3-build-test.png)
 
 ### Phase 4: Deploy – Infra Security & Secrets Management
 ```mermaid
@@ -343,13 +324,8 @@ flowchart TD
   H --> B
 ```
 
-#### Inline PNGs
+#### Inline PNGs if flow charts are not loaded
 
-![Phase 1: Plan & Design](diagrams/phase1-plan.png)
-
-![Phase 2: Develop](diagrams/phase2-develop.png)
-
-![Phase 3: Build & Test](diagrams/phase3-build-test.png)
 
 ![Phase 4: Deploy](diagrams/phase4-deploy.png)
 
